@@ -1,7 +1,3 @@
-import * as appAuth from '@app-firebase/auth';
-import * as firebase from '@app-firebase/firebase';
+import * as firebase from './firebase';
 
-export {
-  appAuth,
-  firebase,
-};
+export { firebase };

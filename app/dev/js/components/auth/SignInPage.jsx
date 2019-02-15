@@ -3,9 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { startSignIn } from '@app-actions/auth';
-import { getProfile } from '@app-selectors/auth';
-import { getRefferer } from '@app-selectors';
+import { signIn } from '@app-actions/auth';
 import { HOME } from '@app-constants/routes';
 
 export class SignInPage extends React.Component {
@@ -16,13 +14,14 @@ export class SignInPage extends React.Component {
   }
 
   signIn() {
-    const from = this.props.location.state && this.props.location.state.from && this.props.location.state.from.pathname || HOME;
-    this.props.startSignIn(from);
+    this.props.signIn();
   }
 
   render() {
-    if (this.props.profile && this.props.profile.email) {
-      return <Redirect to={this.props.refferer} />;
+    const { profile } = this.props;
+
+    if (profile && profile.email) {
+      return <Redirect to={HOME} />
     }
 
     return (
@@ -32,18 +31,17 @@ export class SignInPage extends React.Component {
         </div>
       </div>
     );
-  };
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    profile: getProfile(state),
-    refferer: getRefferer(state),
-  }
+    profile: state.profile,
+  };
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  startSignIn,
-}, dispatch);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ signIn }, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);

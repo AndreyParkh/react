@@ -5,11 +5,11 @@ import Account from '@app-components/header/Account';
 
 const Header = () => {
   return <header className="header">
-      <div className="container">
-        <Nav />
-        <Account />
-      </div>
-    </header>;
+    <div className="container">
+      <Nav />
+      <Account />
+    </div>
+  </header>;
 };
 
 export default Header;

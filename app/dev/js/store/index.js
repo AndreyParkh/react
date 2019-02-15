@@ -1,32 +1,24 @@
 import * as redux from 'redux';
-import thunk from 'redux-thunk';
 
-import { userReducer, reffererReducer } from '@app-reducers/auth';
-import { photographsReducer, photographReducer } from '@app-reducers/photograph';
-import { filtersReducer } from '@app-reducers/filters';
+import { profileReducer } from '@app-reducers/auth';
 
 export default (function () {
   let store;
 
-  return function configure (initialState = {}) {
-    let reducer;
-
+  return () => {
     if (store) {
       return store;
     }
 
-    reducer = redux.combineReducers({
-      profile: userReducer,
-      refferer: reffererReducer,
-      photographs: photographsReducer,
-      currentPhotograph: photographReducer,
-      filters: filtersReducer,
+    let reducer = redux.combineReducers({
+      profile: profileReducer,
+      photographs: () => 2,
     });
 
-    store = redux.createStore(reducer, initialState, redux.compose(
-      redux.applyMiddleware(thunk),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
-    ));
+    store = redux.createStore(
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+     );
 
     return store;
   };
