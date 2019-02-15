@@ -1,0 +1,17 @@
+// Photograph view
+.photograph-view {
+  &__image {
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  &__date {
+    margin-bottom: 24px;
+    color: get-color("mediumGray");
+    font-size: get-font-size("base");
+  }
+  &__desc {
+    line-height: 1.43;
+    font-size: get-font-size("big");
+  }
+}
+// Photograph view (END)

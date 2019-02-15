@@ -1,0 +1,34 @@
+// Photograph
+.photograph {
+  &__preview {
+    margin-bottom: 48px;
+    border: 4px solid get-color("lightGray");
+    padding-bottom: 60%;
+    background-color: get-color("white");
+    position: relative;
+  }
+  &__form {
+    margin: 0 auto;
+    max-width: 640px;
+  }
+  &__remove {
+    width: 48px;
+    height: 48px;
+    color: get-color("red");
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &__remove-btn {
+    margin-left: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .photograph {
+    &__preview {
+      padding-bottom: 70vh;
+    }
+  }
+}
+// Photograph (END)
